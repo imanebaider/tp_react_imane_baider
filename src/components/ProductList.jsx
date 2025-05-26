@@ -18,10 +18,16 @@ const commentaires = [
   { id: 3, nom: "Leila", commentaire: "Service excellent, je recommanderai sans hésiter." },
 ];
 
-const Commentaires = () => {
-  return (
-    <div style={{ maxWidth: "400px", margin: "40px auto" }}>
-      <h2>Avis des clients</h2>
+const Commentaires = () => (
+  <div style={{ maxWidth: "800px", margin: "40px auto" }}>
+    <h2>Avis des clients</h2>
+    <div
+      style={{
+        display: "flex",
+        gap: "20px",
+        justifyContent: "center",
+      }}
+    >
       {commentaires.map(({ id, nom, commentaire }) => (
         <div
           key={id}
@@ -29,8 +35,8 @@ const Commentaires = () => {
             backgroundColor: "#ffc0cb",
             borderRadius: "8px",
             padding: "15px",
-            marginBottom: "15px",
             boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+            width: "250px",
           }}
         >
           <h3 style={{ margin: "0 0 10px 0" }}>{nom}</h3>
@@ -38,8 +44,9 @@ const Commentaires = () => {
         </div>
       ))}
     </div>
-  );
-};
+  </div>
+);
+
 
 function Header() {
   return (
@@ -94,19 +101,23 @@ function Header() {
         </nav>
 
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <button
+          <select
             style={{
-              backgroundColor: "transparent",
               border: "1px solid #8e44ad",
-              color: "#8e44ad",
-              padding: "5px 12px",
               borderRadius: "5px",
-              cursor: "pointer",
+              padding: "5px 12px",
+              color: "#8e44ad",
               fontWeight: "bold",
+              cursor: "pointer",
+              backgroundColor: "transparent",
             }}
+            aria-label="Select language"
           >
-            en English
-          </button>
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+
           <button
             style={{
               position: "relative",
@@ -168,7 +179,14 @@ function ListeProduits() {
         />
       </div>
 
-      <h2 style={{ textAlign: "center", marginBottom: "30px", fontSize: "28px", fontWeight: "bold" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          marginBottom: "30px",
+          fontSize: "28px",
+          fontWeight: "bold",
+        }}
+      >
         Our Products
       </h2>
 
@@ -295,35 +313,37 @@ function Footer() {
               placeholder="Votre email"
               required
               style={{
-                padding: "8px",
-                width: "80%",
-                borderRadius: "5px 0 0 5px",
+                padding: "10px",
+                borderRadius: "5px",
                 border: "1px solid #ccc",
-                outline: "none",
+                width: "100%",
+                marginBottom: "10px",
               }}
             />
             <button
               type="submit"
               style={{
-                padding: "8px 15px",
-                border: "none",
+                padding: "10px 15px",
                 backgroundColor: "#8e44ad",
+                border: "none",
                 color: "white",
-                borderRadius: "0 5px 5px 0",
+                borderRadius: "5px",
                 cursor: "pointer",
+                width: "100%",
               }}
             >
-              S'inscrire
+              S'abonner
             </button>
           </form>
         </div>
       </div>
-
-      <div style={{ textAlign: "center", marginTop: "30px" }}>
-        &copy; 2025 Ruya Store. Tous droits réservés.
-      </div>
+      <p style={{ textAlign: "center", marginTop: "40px", color: "#aaa" }}>
+        © 2025 Ruya Store. All rights reserved.
+      </p>
     </footer>
   );
 }
 
-export default ListeProduits;
+export default function App() {
+  return <ListeProduits />;
+}
